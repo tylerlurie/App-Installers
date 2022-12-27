@@ -15,6 +15,8 @@ Else {
 }
 $rootUrl = "https://download.documentfoundation.org/libreoffice/stable/"
 $dlLink = "$rootUrl$($version.ToString())/win/x86_64/LibreOffice_$($version.ToString())_Win_x64.msi"
+$file = $dlLink -split "/" | Select-Object -Last 1
+$InstallerPath = Join-Path $env:TEMP $file
 (New-Object System.Net.WebClient).DownloadFile($dlLink, $InstallerPath)
 Start-Process msiexec.exe -Wait -ArgumentList "/i $InstallerPath /qn" -Verb RunAs
 Remove-Item $InstallerPath

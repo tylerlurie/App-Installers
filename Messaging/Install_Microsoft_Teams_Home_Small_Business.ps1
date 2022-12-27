@@ -1,5 +1,6 @@
 $ProgressPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Add-Type -AssemblyName System.Web # Required to parse spaces out of URLs for file names
 $redirectLink = "https://teams.live.com/downloads/desktopcontextualinstaller?env=life&plat=windows&intent=life&download=true"
 $request = [System.Net.WebRequest]::Create($redirectLink)
 $request.AllowAutoRedirect=$false
